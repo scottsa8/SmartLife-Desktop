@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SmartLife.views.Account"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLife.views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+   xmlns:src="using:SmartLife"
+  xmlns:local1="using:SmartLife">
+
+
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <StackPanel Padding="15,15"  CornerRadius="{StaticResource OverlayCornerRadius}">
+      <InfoBar
+      Name="info"
+      IsOpen="True"
+      Severity="Warning"
+      Title="Important"
+      IsClosable="True"
+      CloseButtonClick="DontSave"
+      Message="It is recommended to turn auto save on, to avoid logging in again in the future!" >
+        <InfoBar.ActionButton>
+          <Button Content="Allow" Click="AllowSave" />
+        </InfoBar.ActionButton>
+      </InfoBar>
+      <Grid Padding="10" CornerRadius="{StaticResource ControlCornerRadius}"  VerticalAlignment="Top">
+        <StackPanel Orientation="Horizontal" Background="{StaticResource LayerFillColorDefaultBrush}"
+                  HorizontalAlignment="Right" CornerRadius="{StaticResource OverlayCornerRadius}" Padding="6" Spacing="5">
+          <FontIcon Glyph="&#xE77B;" HorizontalAlignment="Right"/>
+          <Button Click="Logout" Content="Logout" HorizontalAlignment="Right" Style="{StaticResource SubtitleTextBlockStyle}"></Button>
+        </StackPanel>
+      </Grid>
+      <Rectangle Fill="Transparent" Height="10"></Rectangle>
+
+      <StackPanel Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}">
+        <TextBlock Text="Auto Refresh Login" Style="{StaticResource SubtitleTextBlockStyle}" ></TextBlock>
+        <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+          <FontIcon Glyph="&#xE946;" FontSize="14"></FontIcon>
+          <TextBlock Text="Your Access token will be stored in a file locally, this feature isn't neccessary but highly recommended for better functionality"
+                 Style="{StaticResource BodyTextBlockStyle}" FontStyle="Normal" FontSize="14" TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" >
+          <ToggleSwitch Name="toggle" OffContent="Enable" OnContent="Disable" IsOn="{x:Bind src:App.GetSaveState()}" Toggled="SaveButton"/>
+          <ProgressRing Name="progress" IsActive="False" Width="32" />
+        </StackPanel>
+      </StackPanel>
+
+      <Rectangle Fill="Transparent" Height="10"></Rectangle>
+
+    </StackPanel>
+  </ScrollViewer>
+</Page>

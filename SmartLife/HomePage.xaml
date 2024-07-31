@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SmartLife.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLife"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:editors="using:Syncfusion.UI.Xaml.Editors"
+    xmlns:views="using:SmartLife"
+    xmlns:src="using:SmartLife"
+    mc:Ignorable="d"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+   >
+  
+  <NavigationView x:Name="NavigationViewControl"
+                            PaneDisplayMode="Left"
+                            IsSettingsVisible="True"
+                            IsPaneOpen="False" IsPaneToggleButtonVisible="True" 
+                            OpenPaneLength="175"
+                            BackRequested="NavigationViewControl_BackRequested" 
+                            ItemInvoked="NavigationViewControl_ItemInvoked" 
+                            AlwaysShowHeader="False"
+                           >
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Home" Tag="SmartLife.views.DeviceView" Icon="Home" />
+                <NavigationViewItemSeparator></NavigationViewItemSeparator>
+                <NavigationViewItem Content="Refresh Devices" Tag="REFRESH" Icon="Refresh"/>
+                <NavigationViewItemSeparator></NavigationViewItemSeparator>
+                <NavigationViewItem Content="Notifications" Tag="SmartLife.views.Notifications" Icon="Mail">
+                <NavigationViewItem.InfoBadge>
+                  <InfoBadge x:Name="NotificationBadge"
+                          Value="{x:Bind src:App.TotalNotifications.Count,Mode=OneWay}"
+                          Visibility="Visible"
+                          Style="{ThemeResource CriticalValueInfoBadgeStyle}"/>
+                </NavigationViewItem.InfoBadge>
+                </NavigationViewItem>
+              
+    </NavigationView.MenuItems>
+                    <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" Padding="10"/>
+        </NavigationView>
+
+</Page>

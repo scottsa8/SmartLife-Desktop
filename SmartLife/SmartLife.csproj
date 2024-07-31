@@ -1,0 +1,114 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>
+      net8.0-windows10.0.19041;
+    </TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Display name -->
+    <ApplicationTitle>SmartLife</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.SmartLife</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <!--
+      If you encounter this error message:
+
+        error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
+        Please update to a newer .NET SDK in order to reference this assembly.
+
+      This means that the two packages below must be aligned with the "build" version number of
+      the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
+      must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
+    -->
+    <!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
+
+    <!--
+      UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>Fluent</UnoFeatures>
+    <UnoFeatures>
+      Lottie;
+      Hosting;
+      Toolkit;
+      Logging;
+      MVUX;
+      Configuration;
+      Http;
+      Serialization;
+      Localization;
+      ThemeService;
+    </UnoFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Assets\NewFolder\**" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Assets\NewFolder\**" />
+    <EmbeddedResource Remove="Assets\NewFolder\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Assets\NewFolder\**" />
+    <None Remove="Services\**" />
+    <Page Remove="Assets\NewFolder\**" />
+    <Page Remove="Services\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Assets\Icons\smartlife.png" />
+    <Content Remove="Assets\Splash\smartlife.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Icons\refresh.json" />
+    <None Remove="Assets\Splash\smartlife.svg" />
+    <None Remove="views\Notifications.xaml" />
+    <None Remove="views\TaskFlyout.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Core" />
+    <PackageReference Include="H.NotifyIcon.Uno.WinUI" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
+    <PackageReference Include="Syncfusion.Editors.WinUI" />
+    <PackageReference Include="Syncfusion.Sliders.WinUI" />
+    <PackageReference Include="TaskScheduler" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnoImage Update="Assets\Icons\icon_foreground.svg" Link="Assets\icon_foreground.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnoImage Remove="Assets\Splash\smartlife.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnoImage Include="Assets\Icons\smartlife.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="views\Notifications.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="views\TaskFlyout.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Services\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Services\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnoImage Remove="Assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="views\General.xaml" />
+  </ItemGroup>
+
+</Project>

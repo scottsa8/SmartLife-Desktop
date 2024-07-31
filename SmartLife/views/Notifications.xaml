@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SmartLife.views.Notifications"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLife.views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:local1="using:SmartLife"
+    xmlns:src="using:SmartLife">
+
+  <Page.Resources>
+  <DataTemplate x:Key="notiTemplate" x:DataType="local1:Notification">
+      <StackPanel Orientation="Horizontal" Background="{x:Bind Severity}" CornerRadius="{StaticResource ControlCornerRadius}" Spacing="10" Margin="0,10,0,0" Padding="2">
+        <FontIcon Glyph="{x:Bind Icon}" VerticalAlignment="Center" Foreground="Black"></FontIcon>
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind Name}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"></TextBlock>
+        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{x:Bind Info}" Foreground="Black" VerticalAlignment="Center"></TextBlock>
+        <Button HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1" Click="CloseNoti" Tag="{x:Bind Name}"> 
+          <Button.Resources>
+            <ResourceDictionary>
+              <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                  <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="LightGray" Opacity="0.3" />
+                </ResourceDictionary>
+              </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+          </Button.Resources>
+          <FontIcon Glyph="&#xE711;" Foreground="Black" >
+          </FontIcon>
+        </Button>
+      </StackPanel>
+    
+  </DataTemplate>
+  </Page.Resources>
+
+  <ScrollView>
+  <StackPanel Orientation="Vertical">
+    <TextBlock Style="{StaticResource DisplayTextBlockStyle}" Text="Notifications" HorizontalAlignment="Center"></TextBlock>
+    <Button Content="Clear All" HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1" Click="CloseNoti" Tag="All">
+      <Button.Resources>
+        <ResourceDictionary>
+          <ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary x:Key="Dark">
+              <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="LightGray" Opacity="0.3" />
+            </ResourceDictionary>
+          </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+      </Button.Resources>
+    </Button>
+    <Rectangle Fill="Transparent" Height="10"></Rectangle>
+      <ScrollView
+      ContentOrientation="Vertical" HorizontalScrollBarVisibility="Hidden"
+      VerticalScrollBarVisibility="Auto"  Padding="10">
+        <ItemsRepeater
+       ItemsSource="{x:Bind src:App.GetNotis() }"
+       ItemTemplate="{StaticResource notiTemplate}"
+      
+/>
+      </ScrollView>
+    </StackPanel>
+  </ScrollView>
+</Page>

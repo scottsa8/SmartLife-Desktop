@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SmartLife.views.DeviceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLife"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:editors="using:Syncfusion.UI.Xaml.Editors"
+    xmlns:views="using:SmartLife"
+    xmlns:src="using:SmartLife"
+    mc:Ignorable="d"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:slider="using:Syncfusion.UI.Xaml.Sliders" 
+    xmlns:coreconverters="using:Syncfusion.UI.Xaml.Core"
+  >
+    
+    <Page.Resources>
+        <coreconverters:FormatStringConverter x:Key="FormatStringConverter" />
+        <Style x:Name="thumbStyle"
+                TargetType="Thumb">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Grid>
+
+                            <Ellipse Height="{TemplateBinding Height}"
+                             Width="{TemplateBinding Width}"
+                             Fill="LightGoldenrodYellow"
+                             Stroke="{TemplateBinding Background}"
+                             StrokeThickness="2" />
+                            <TextBlock Text="{Binding Converter={StaticResource FormatStringConverter},
+                                              ConverterParameter='N0'}"
+                               FontSize="13"
+                                       Foreground="Black"
+                               Margin="0,0,0,2"
+                               HorizontalTextAlignment="Center"
+                               VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <DataTemplate x:Key="deviceTemplate" x:DataType="local:Device">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" BorderBrush="Gray" BorderThickness="2" CornerRadius="4" Padding="5">
+                <TextBlock  Text="{x:Bind name}" FontFamily="Arial" FontSize="20" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords"
+                 CharacterSpacing="80" Foreground="CornflowerBlue" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                <Image Source="{x:Bind icon}" Width="100" Height="100" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Button Width="51" x:Name="onB" Click="TurnOnOff" Tag="{x:Bind id}" Background="DarkGreen">On
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.ThemeDictionaries>
+                                    <ResourceDictionary x:Key="Dark">
+                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Green"/>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.ThemeDictionaries>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                    </Button>
+                    <Button Width="51" x:Name="offB" Click="TurnOnOff" Tag="{x:Bind id}" Background="DarkRed">Off
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <ResourceDictionary.ThemeDictionaries>
+                                    <ResourceDictionary x:Key="Dark">
+                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Red"/>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.ThemeDictionaries>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" >
+                    <FontIcon Glyph="&#xE793;" Visibility="{x:Bind Show_Slider}"  />
+                    <slider:SfSlider ThumbHeight="22" ThumbWidth="22" ThumbStyle="{StaticResource thumbStyle}" InactiveTrackHeight="6" Value="{x:Bind brightness}" 
+                                     ActiveTrackHeight="6"  ShowToolTip="False" Width="107" Minimum="0" Maximum="100" Height="32" 
+                                     ThumbDragCompleted="brightness" PointerPressed="brightness" KeyUp="brightness" Visibility="{x:Bind Show_Slider}"
+                                     Tag="{x:Bind id}" />
+                    <Rectangle Width="135" Height="32" Fill= "Transparent" Visibility="{x:Bind Show_Rect}"></Rectangle>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" >
+                    <FontIcon Glyph="&#xE790;" />
+                    <Grid x:Name="grid">
+            <editors:SfDropDownColorPicker x:Name="color" Width="85"
+                                           DropDownPlacement="LeftEdgeAlignedBottom" Tag="{x:Bind id}"
+                                           SelectedBrushChanged="Color" >
+                            <FlyoutBase.AttachedFlyout>
+                                <editors:DropDownFlyout>
+                  <editors:SfColorPicker ColorSpectrumComponents="HueSaturation" BrushTypeOptions="SolidColorBrush" AlphaInputOptions="TextInput" ColorChannelOptions="HSV" ColorEditorsVisibilityMode="Expandable"  
+                                    Width="auto" Tag="{x:Bind id}"/>
+                                </editors:DropDownFlyout>
+                            </FlyoutBase.AttachedFlyout>
+                        </editors:SfDropDownColorPicker>
+                    </Grid>
+                </StackPanel>
+
+            </StackPanel>
+
+        </DataTemplate>
+
+        <controls:WrapLayout x:Name="center" Orientation="Horizontal" HorizontalSpacing="5" VerticalSpacing="5"/>
+
+    </Page.Resources>
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+  <StackPanel>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="refreshB" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Devices" Style="{StaticResource DisplayTextBlockStyle}" ></TextBlock>
+            <ScrollView
+                ContentOrientation="Vertical" HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Auto"  Padding="10">
+                <ItemsRepeater
+                 ItemsSource="{x:Bind src:App.GetDevices() }"
+                 ItemTemplate="{StaticResource deviceTemplate}"
+                 Layout="{StaticResource center}"
+          />
+            </ScrollView>
+        </StackPanel>
+        <views:TrayView x:Name="TrayView" />
+    </StackPanel>
+  </ScrollViewer>
+</Page>

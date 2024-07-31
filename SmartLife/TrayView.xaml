@@ -1,0 +1,50 @@
+﻿<UserControl
+    x:Class="SmartLife.TrayView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tb="using:H.NotifyIcon"
+    xmlns:src="using:SmartLife"
+    mc:Ignorable="d"> 
+    <tb:TaskbarIcon
+        x:Name="TrayIcon"
+        x:FieldModifier="public"
+        ContextMenuMode="PopupMenu" 
+        IconSource="Assets/Icons/smart-life.ico"
+        LeftClickCommand="{x:Bind ShowHideWindowCommand}"
+        NoLeftClickDelay="False"
+        DoubleClickCommand="{x:Bind ToggleFavouriteCommand}"
+        ToolTipText="Smart Life">
+        <!-- Ideally wanna use second window, but cant add items dynamically?-->
+        <tb:TaskbarIcon.ContextFlyout >
+            <MenuFlyout AreOpenCloseAnimationsEnabled="True" x:Name="Menu" >
+                <MenuFlyoutSubItem Text="Settings">
+                    <MenuFlyoutSubItem.Icon>
+                        <FontIcon Glyph="&#xE713;"/>
+                    </MenuFlyoutSubItem.Icon>
+                    <MenuFlyoutItem
+                        Command="{x:Bind updateDevicesCommand}"
+                           Text="Refresh Devices"
+                           >
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xE72C;"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem
+                       Command="{x:Bind OpenSettingsCommand}"
+                       Text="Open Settings">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon Glyph="&#xE712;"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem> 
+                </MenuFlyoutSubItem>
+                <MenuFlyoutSeparator/>
+                <MenuFlyoutItem
+                Command="{x:Bind ExitApplicationCommand}"
+                Text="Exit"
+                />
+            </MenuFlyout>
+        </tb:TaskbarIcon.ContextFlyout>
+    </tb:TaskbarIcon>
+</UserControl>

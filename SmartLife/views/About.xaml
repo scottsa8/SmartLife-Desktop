@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SmartLife.views.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartLife.views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+
+
+  <StackPanel Padding="15,15" CornerRadius="{StaticResource OverlayCornerRadius}">
+    
+    <StackPanel Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}">
+      
+      <StackPanel Orientation="Horizontal" Spacing="10">
+        <FontIcon Glyph="&#xE946;" ></FontIcon>
+        <TextBlock Text="This an unofficial app to control smart life (tuya) devices" Style="{StaticResource SubtitleTextBlockStyle}"></TextBlock>
+      </StackPanel>
+    </StackPanel>
+    
+    <Rectangle Fill="Transparent" Height="10"></Rectangle>
+
+    <Grid ColumnSpacing="10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*"/>
+        <ColumnDefinition Width="1*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Column="0" Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" >
+        <TextBlock Text="Follow the development!" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+        <Rectangle Fill="Transparent" Height="10"></Rectangle>
+        
+        <Button Click="Github" Background="Transparent" BorderThickness="0">
+       <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10" >
+            <Image Source="/Assets/Icons/git.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Github"></TextBlock>
+          </StackPanel>
+        </Button>
+        
+        <Rectangle Fill="Transparent" Height="5"></Rectangle>
+        
+        <Button Click="Store" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10" >
+            <Image Source="/Assets/Icons/store.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Windows Store"></TextBlock>
+          </StackPanel>
+        </Button>
+      </StackPanel>
+      
+      <StackPanel Grid.Column="2" Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" >
+        <TextBlock Text="Follow me!" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+
+        <Button Click="MyGithub" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10" >
+            <Image Source="/Assets/Icons/git.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Github"></TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Rectangle Fill="Transparent" Height="5"></Rectangle>
+
+        <Button Click="Discord" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10">
+            <Image Source="/Assets/Icons/discord.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Discord Server"></TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Rectangle Fill="Transparent" Height="5"></Rectangle>
+
+        <Button Click="Twitter" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10">
+            <Image Source="/Assets/Icons/x.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Twitter"></TextBlock>
+          </StackPanel>
+        </Button>
+        
+      </StackPanel>
+    </Grid>
+    
+    <Rectangle Fill="Transparent" Height="10"></Rectangle>
+
+
+    <StackPanel Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" >
+      <TextBlock Text="Need support?" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+        
+      <StackPanel Spacing="5">
+        <TextBlock Padding="15,0" Text="Join the discord support server, or feel free to send me a message!" Style="{StaticResource BodyTextBlockStyle}"> </TextBlock>
+        
+        <Button Click="Discord" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10">
+            <Image Source="/Assets/Icons/discord.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Discord Server"></TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Click="GithubSup" Background="Transparent" BorderThickness="0">
+          <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10" >
+            <Image Source="/Assets/Icons/git.png" Width="25" Height="25"></Image>
+            <TextBlock Text="Submit a github issue"></TextBlock>
+          </StackPanel>
+        </Button>
+
+      </StackPanel>
+      
+  </StackPanel>
+
+  
+  </StackPanel>
+</Page>
