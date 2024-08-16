@@ -19,7 +19,23 @@ public class Device
         Show_Slider = s;
         Show_Rect = r;
         favourite = f;
-        
+
+        //scale font size with length of name.
+        switch (name.Length) {
+            case (< 10):
+                txtSize = 20;
+                break;
+            case (> 10 and <20):
+                txtSize = 18;
+                break;
+            case (> 20):
+                txtSize = 16;
+                break;
+            default:
+                txtSize = 20;
+                break;
+                
+            }
     }
     public string name { get; set; }
     public string id { get; set; }
@@ -32,4 +48,5 @@ public class Device
     public Visibility Show_Slider;
     public Visibility Show_Rect;
     public bool favourite { get; set; }
+    public int txtSize { get; set; }
 }

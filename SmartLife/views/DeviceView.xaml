@@ -43,10 +43,11 @@
         </Style>
         
         <DataTemplate x:Key="deviceTemplate" x:DataType="local:Device">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" BorderBrush="Gray" BorderThickness="2" CornerRadius="4" Padding="5">
-                <TextBlock  Text="{x:Bind name}" FontFamily="Arial" FontSize="20" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords"
-                 CharacterSpacing="80" Foreground="CornflowerBlue" HorizontalAlignment="Center" VerticalAlignment="Center"  />
-                <Image Source="{x:Bind icon}" Width="100" Height="100" />
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" BorderBrush="Gray" BorderThickness="2" CornerRadius="4" Padding="5" Width="166" Height="240">
+                <TextBlock  Text="{x:Bind name}" FontFamily="Arial" FontSize="{x:Bind txtSize}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap" HorizontalTextAlignment="Center"
+                 CharacterSpacing="80" Foreground="CornflowerBlue" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Rectangle Width="135" Height="5" Fill= "Transparent" ></Rectangle>
+        <Image Source="{x:Bind icon}" Width="100" Height="100" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <Button Width="51" x:Name="onB" Click="TurnOnOff" Tag="{x:Bind id}" Background="DarkGreen">On
                         <Button.Resources>

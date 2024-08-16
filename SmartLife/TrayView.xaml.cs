@@ -7,6 +7,8 @@ using H.NotifyIcon.EfficiencyMode;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Devices.Display.Core;
 using Microsoft.UI.Windowing;
+using static System.Net.Mime.MediaTypeNames;
+using Uno;
 
 namespace SmartLife;
 
@@ -30,16 +32,17 @@ public sealed partial class TrayView : UserControl
     public async Task<bool> FirstRunTask()
     {
         await Task.Delay(1000);
-        Menu.Items.Insert(0, new MenuFlyoutSeparator() { Tag = "DEVICE" });
+        Menu.Items.Insert(0, new MenuFlyoutSeparator() { Tag = "SEP" });
         for (int i = 0; i < App.GetDevices().Count; i++)
         {
             string txt = "Toggle " + App.GetDevices()[i].name;
+            string id = App.GetDevices()[i].name.ToUpper();
             Menu.Items.Insert(i, new MenuFlyoutItem()
             {
                 Command = TurnOnOffCommand,
                 CommandParameter = i,
                 Text = txt,
-                Tag = "DEVICE",
+                Tag = "D_"+id,
                 Icon = new ImageIcon() { Source = new BitmapImage(new Uri(App.GetDevices()[i].icon)) }
             });
         }
@@ -48,33 +51,26 @@ public sealed partial class TrayView : UserControl
     [RelayCommand]
     public void updateDevices()
     {
-    
-        //duplicates item every refresh for some reason ?
-        for (int c = 0; c < Menu.Items.Count; c++) 
+        //should be fixed?
+        App.getApi().Discover();
+        for (int c = 0; c < Menu.Items.Count; c++)
         {
-            if(Menu.Items[c].Tag == null) { continue; } 
-            if (Menu.Items[c].Tag.Equals("DEVICE")) {
-                Menu.Items.RemoveAt(c);
-            }
-        }
-        Menu.Items.Insert(0,new MenuFlyoutSeparator() { Tag="DEVICE"});
-        for (int i = 0; i < App.GetDevices().Count; i++)
-        {
-
-            string txt = App.GetDevices()[i].name;
-      
-            MenuFlyoutItem dev = new MenuFlyoutItem()
+            for (int x =0;x< App.GetDevices().Count; x++)
             {
-                Command = TurnOnOffCommand,
-                CommandParameter = i,
-                Text = "toggle" + txt,
-                Tag = "DEVICE",
-                Icon = new ImageIcon() { Source = new BitmapImage(new Uri(App.GetDevices()[i].icon)) }
-            };
-            Menu.Items.Insert(i,dev);
-       
+                string txt = "D_" + App.GetDevices()[x].name.ToUpper();
+                try
+                {
+                    var index = Menu.Items.Select((item, index) => new { Item = item, Index = index }).First(i => i.Item.Tag.Equals((txt))).Index;
+                    System.Diagnostics.Debug.WriteLine(index +"already added");
+                }
+                catch (Exception) 
+                {
+                    System.Diagnostics.Debug.WriteLine("add");
+                }
+               
+            }
+
         }
-        
     }
     [RelayCommand]
     public void ShowHideWindow()

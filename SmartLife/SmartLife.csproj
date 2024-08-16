@@ -57,11 +57,11 @@
     <Page Remove="Services\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Assets\Icons\smartlife.png" />
     <Content Remove="Assets\Splash\smartlife.svg" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Icons\refresh.json" />
+    <None Remove="Assets\Icons\smartlife.svg" />
     <None Remove="Assets\Splash\smartlife.svg" />
     <None Remove="views\Notifications.xaml" />
     <None Remove="views\TaskFlyout.xaml" />
@@ -82,9 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <UnoImage Remove="Assets\Splash\smartlife.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <UnoImage Include="Assets\Icons\smartlife.png" />
   </ItemGroup>
   <ItemGroup>
     <UpToDateCheckInput Remove="views\Notifications.xaml" />

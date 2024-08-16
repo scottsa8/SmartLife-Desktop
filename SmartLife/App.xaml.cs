@@ -13,6 +13,7 @@ using System;
 using Windows.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.Win32.TaskScheduler;
+using Microsoft.UI;
 
 
 
@@ -126,6 +127,7 @@ public partial class App : Application
         MainWindow.AppWindow.Resize(size);
         MainWindow.AppWindow.Title = "Smart Life (unofficial)";
         MainWindow.AppWindow.SetIcon("Assets/Icons/smart-life.ico");
+
 
         SetBackDrop(0, MainWindow);
         if (!Startupbck) { MainWindow.Activate(); }
@@ -398,6 +400,7 @@ public partial class App : Application
  * ------------
  * THEMEING - PICK A THEME
  * OVERALL UI AND ANIMATIONS
+ * format popup tray to look abit nicer
  * 
  * FUNCTIONAL
  * ------------
@@ -407,8 +410,6 @@ public partial class App : Application
  *
  *BUGS
  *-------------
- * right click tray popup -> refresh devices is broken.
- * tray icon action is turbo fucked -> works if you spam it?
- * tray icon flyout is broken -> reliant on monitor size? I think?
+ * tray icon action is turbo fucked -> works if you spam it?  -> literally no clue?
  * 
  * **/

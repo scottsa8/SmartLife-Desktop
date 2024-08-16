@@ -31,7 +31,8 @@
         </StackPanel>
         <Rectangle Fill="Transparent" Height="10"></Rectangle>
 
-    <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" >
+    <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" x:Name="toggebuttons" >
+      
       <TextBlock Text="Tray icon action" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
     <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}"  >
       <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">

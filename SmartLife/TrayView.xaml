@@ -19,13 +19,14 @@
         <!-- Ideally wanna use second window, but cant add items dynamically?-->
         <tb:TaskbarIcon.ContextFlyout >
             <MenuFlyout AreOpenCloseAnimationsEnabled="True" x:Name="Menu" >
-                <MenuFlyoutSubItem Text="Settings">
+                <MenuFlyoutSubItem Text="Settings" Tag="settingsSub">
                     <MenuFlyoutSubItem.Icon>
                         <FontIcon Glyph="&#xE713;"/>
                     </MenuFlyoutSubItem.Icon>
                     <MenuFlyoutItem
                         Command="{x:Bind updateDevicesCommand}"
                            Text="Refresh Devices"
+                            Tag="Refresh"
                            >
                         <MenuFlyoutItem.Icon>
                             <FontIcon Glyph="&#xE72C;"/>
@@ -33,16 +34,18 @@
                     </MenuFlyoutItem>
                     <MenuFlyoutItem
                        Command="{x:Bind OpenSettingsCommand}"
-                       Text="Open Settings">
+                       Text="Open Settings"
+                       Tag="Settings">
                         <MenuFlyoutItem.Icon>
                             <FontIcon Glyph="&#xE712;"/>
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem> 
                 </MenuFlyoutSubItem>
-                <MenuFlyoutSeparator/>
+                <MenuFlyoutSeparator Tag="SEP"/>
                 <MenuFlyoutItem
                 Command="{x:Bind ExitApplicationCommand}"
                 Text="Exit"
+                Tag="EXIT"
                 />
             </MenuFlyout>
         </tb:TaskbarIcon.ContextFlyout>
