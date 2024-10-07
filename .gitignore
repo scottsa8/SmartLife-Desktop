@@ -399,5 +399,10 @@ FodyWeavers.xsd
 
 # Single Target Config
 solution-config.props
+
+.vsconfig
+.vscode
+.editorconfig
+
 # Publish Profiles
 !**/Properties/PublishProfiles/*.pubxml
