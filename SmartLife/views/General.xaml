@@ -31,13 +31,53 @@
         </StackPanel>
         <Rectangle Fill="Transparent" Height="10"></Rectangle>
 
+
+
+      <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10"
+                   CornerRadius="{StaticResource OverlayCornerRadius}" x:Name="toggebuttons"
+                   VerticalAlignment="Center">
+      <TextBlock Text="Tray icon action" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="Favourite a device" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" ></TextBlock>
+        <RadioButton Tag="fav" IsChecked="{x:Bind src:App.GetFav()}" Checked="Toggle" x:Name="favRB">
+          <StackPanel x:Name="stk1">
+            <StackPanel  Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" x:Name="stkpan">
+              <FontIcon Glyph="&#xE946;" FontSize="14"></FontIcon>
+              <TextBlock Text="double click the icon in the tray to quickly toggle one favourited device"
+       Style="{StaticResource BodyTextBlockStyle}" FontStyle="Normal" FontSize="14" TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+            <RadioButtons
+                 x:Name="favouritepanel"
+                 ItemTemplate="{StaticResource ListView}"
+                 ItemsSource="{x:Bind src:App.GetDevices()}"
+                 SelectedIndex="{x:Bind GetSelected()}"
+                 MaxColumns="{x:Bind GetScale()}"
+                >
+            </RadioButtons>
+          </StackPanel>
+        </RadioButton>
+
+        
+        <TextBlock Text="Small Popup" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" ></TextBlock>
+        <RadioButton Tag="pop" IsChecked="{x:Bind src:App.GetPop()}" Checked="Toggle" x:Name="popRB">
+          <StackPanel  Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" x:Name="stk2">
+            <FontIcon Glyph="&#xE946;" FontSize="14"></FontIcon>
+            <TextBlock Text="double click the icon in the tray to open a small popup"
+                       Style="{StaticResource BodyTextBlockStyle}" FontStyle="Normal"
+                       FontSize="14" TextWrapping="Wrap"></TextBlock>
+          </StackPanel>
+        </RadioButton>
+
+       
+      </StackPanel>
+
+      <!-- Favourite device  
     <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" x:Name="toggebuttons" >
       
       <TextBlock Text="Tray icon action" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
     <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}"  >
       <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
         <TextBlock Text="Favourite a device" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" ></TextBlock>
-        <ToggleSwitch AutomationProperties.Name="simple ToggleSwitch" x:Name="tsFav" IsOn="True" Toggled="UpdateFav" VerticalAlignment="Bottom"/>
+        <ToggleSwitch AutomationProperties.Name="simple ToggleSwitch" x:Name="tsFav" IsOn="True" Toggled="Toggle" VerticalAlignment="Bottom"/>
       </StackPanel>
       <StackPanel  Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" x:Name="stkpan">
         <FontIcon Glyph="&#xE946;" FontSize="14"></FontIcon>
@@ -57,10 +97,12 @@
 
     <Rectangle Fill="Transparent" Height="10"></Rectangle>
 
-    <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}"  >
+      
+      
+        <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}"  >
       <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
         <TextBlock Text="Small Popup" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Center" ></TextBlock>
-        <ToggleSwitch AutomationProperties.Name="simple ToggleSwitch" x:Name="tsPop" IsOn="False" Toggled="SmallPop" VerticalAlignment="Bottom"/>
+        <ToggleSwitch AutomationProperties.Name="simple ToggleSwitch" x:Name="tsPop" IsOn="False" Toggled="Toggle" VerticalAlignment="Bottom"/>
       </StackPanel>
       <StackPanel  Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" x:Name="stkpan2">
         <FontIcon Glyph="&#xE946;" FontSize="14"></FontIcon>
@@ -69,8 +111,8 @@
       </StackPanel>
     </StackPanel>
     </StackPanel>
-
-    <Rectangle Fill="Transparent" Height="10"></Rectangle>
+    -->
+      <Rectangle Fill="Transparent" Height="10"></Rectangle>
       
     <StackPanel  Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}"  >
       <TextBlock Text="Startup options" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>

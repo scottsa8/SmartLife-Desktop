@@ -31,30 +31,10 @@ namespace SmartLife.views;
 /// </summary>
 public sealed partial class General : Page
 {
-    private bool pop;
-    private bool fav;
-    private bool invert;
     public General()
     {
         this.InitializeComponent();
-        fav = App.GetFav();
-        pop = !App.GetFav();
-        if (fav == false) //if pop is on
-        {
-            tsFav.IsOn = false;
-            favouritepanel.IsEnabled = false;
-            stkpan.Opacity = 0.5;
-            stkpan2.Opacity = 1.0;
-            invert = true;
-        }
-        else // if fav is on
-        {
-            tsPop.IsOn = false;
-            favouritepanel.IsEnabled = true;
-            stkpan2.Opacity = 0.5;
-            stkpan.Opacity = 1.0;
-            invert = false;
-        }
+
         if (App.GetStart())
         {
             bckgrd.Opacity = 1.0;
@@ -66,67 +46,24 @@ public sealed partial class General : Page
             bckgrd.IsEnabled = false;
         }
     }
-    public void SmallPop(object sender, RoutedEventArgs e)
+    public void Toggle(object sender, RoutedEventArgs e)
     {
-        if (stkpan2 != null)
+        RadioButton s = (RadioButton)sender;
+        string tag = s.Tag.ToString()!;
+        //favourites enabled
+        if (tag.Equals("fav"))
         {
-            if (tsPop.IsOn)
-            {
-                tsFav.IsEnabled = false;
-                tsFav.IsOn = false;
-                favouritepanel.IsEnabled = false;
-            }
-            else
-            {
-                tsFav.IsEnabled = true;
-                tsFav.IsOn = true;
-                favouritepanel.IsEnabled = true;
-            }
-            pop = !pop;
-            DisablePop();
+            stk2.Opacity = 0.4;
             App.UpdateFav(true);
-        }
-    }
-    public void DisablePop()
-    {
-        bool temp;
-        if (invert) { temp = !pop; } else { temp = pop; }
-        if (temp)
+            stk1.Opacity = 1.0;
+            favouritepanel.IsEnabled = true;
+        }//pop up enabled
+        else if (tag.Equals("pop"))
         {
-            stkpan2.Opacity = 1.0;
-        }
-        else { stkpan2.Opacity = 0.5; }
-    }
-    public void DisableFav()
-    {
-        bool temp;
-        if (invert) { temp = !fav; } else { temp = fav; }
-        if (temp)
-        {
-            stkpan.Opacity = 1.0;
-        }
-        else { stkpan.Opacity = 0.5; }
-    }
-    public void UpdateFav(object sender, RoutedEventArgs e)
-    {
-        if (favouritepanel != null)
-        {
-            if (tsFav.IsOn)
-            {
-                tsPop.IsEnabled = false;
-                tsPop.IsOn = false;
-                favouritepanel.IsEnabled = true;
-            }
-            else
-            {
-                tsPop.IsEnabled = true;
-                tsPop.IsOn = true;
-                favouritepanel.IsEnabled = false;
-            }
-            fav = !fav;
-            DisableFav();
+            stk1.Opacity = 0.4;
             App.UpdateFav(false);
-
+            stk2.Opacity = 1.0;
+            favouritepanel.IsEnabled = false;
         }
     }
     public int GetSelected()
@@ -232,4 +169,8 @@ public sealed partial class General : Page
         App.ToggleStartbck(false);
     }
 
+    private void TextBlock_AccessKeyDisplayRequested(UIElement sender, AccessKeyDisplayRequestedEventArgs args)
+    {
+
+    }
 }

@@ -7,7 +7,6 @@ using H.NotifyIcon.EfficiencyMode;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Devices.Display.Core;
 using Microsoft.UI.Windowing;
-using static System.Net.Mime.MediaTypeNames;
 using Uno;
 
 namespace SmartLife;

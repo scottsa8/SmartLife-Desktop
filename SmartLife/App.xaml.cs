@@ -171,6 +171,10 @@ public partial class App : Application
     {
         return FavEnabled;
     }
+    public static bool GetPop()
+    {
+        return !FavEnabled;
+    }
     public static bool GetStart()
     {
         return Startup;
@@ -417,10 +421,4 @@ public partial class App : Application
  * MAYBE ADD NEW TASK BAR ICON -> OPTIONAL?
  * CLEAN THIS SHIT UP 
  * Start app on boot - auto start in background? - half done ?
- *
- *BUGS
- *-------------
- * tray icon action is turbo fucked -> works if you spam it?  -> literally no clue?
- * 
- *
  * **/

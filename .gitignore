@@ -117,7 +117,6 @@ ipch/
 *.vsp
 *.vspx
 *.sap
-*.vscode
 
 # Visual Studio Trace Files
 *.e2e
@@ -402,7 +401,3 @@ FodyWeavers.xsd
 solution-config.props
 # Publish Profiles
 !**/Properties/PublishProfiles/*.pubxml
-
-.editorconfig
-.vsconfig
-
