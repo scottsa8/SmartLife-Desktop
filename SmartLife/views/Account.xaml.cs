@@ -46,13 +46,20 @@ public sealed partial class Account : Page
    
     public void AllowSave(object sender, RoutedEventArgs e)
     {
+        if (App.GetUser().GetSaveState() == false)
+        {
+            App.GetUser().StoreCreds(App.GetUser().GetAT(),App.GetUser().GetRT());
+        }
         App.GetUser().SetSaveState(true);
+
         info.Visibility = Visibility.Collapsed;
         toggle.IsOn = true;
     }
     private void DontSave(InfoBar sender, object args)
     {
-        App.GetUser().SetSaveState(false);    }
+        App.GetUser().DelSave();
+        App.GetUser().SetSaveState(false);
+    }
     private void SaveButton(object sender, RoutedEventArgs e)
     {
         ToggleSwitch t = (ToggleSwitch)sender;
@@ -62,9 +69,10 @@ public sealed partial class Account : Page
             if (!progress.IsActive) { progress.IsActive = true; }
             if (progress.Visibility == Visibility.Collapsed) { progress.Visibility = Visibility.Visible; }
             //no delay for animations
+                      
             App.GetUser().SetSaveState(true);
             App.UpdateNotification(true, "Saving disabled", "Enable in settings to auto login on app startup!", new SolidColorBrush(Colors.LightGoldenrodYellow), "\uE946");
-
+            App.GetUser().StoreCreds(App.GetUser().GetAT(), App.GetUser().GetRT());
             progress.IsActive = false;
             progress.Visibility = Visibility.Collapsed;
         }
@@ -72,6 +80,7 @@ public sealed partial class Account : Page
             App.GetUser().SetSaveState(false);
             App.UpdateNotification(false, "Saving disabled", "Enable in settings to auto login on app startup!", new SolidColorBrush(Colors.LightGoldenrodYellow), "\uE946");
             if (info.Visibility == Visibility.Collapsed) { info.Visibility = Visibility.Visible; }
+            App.GetUser().DelSave();
         }
     }   
     public void AddTray(object sender, RoutedEventArgs e)

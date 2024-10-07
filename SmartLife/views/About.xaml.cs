@@ -27,7 +27,6 @@ public sealed partial class About : Page
     {
         this.InitializeComponent();
     }
-
     private async void Github(object sender, RoutedEventArgs e)
     {
        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/scottsa8/SmartLife-Desktop")); 
@@ -51,5 +50,21 @@ public sealed partial class About : Page
     private async void GithubSup(object sender, RoutedEventArgs e)
     {
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/scottsa8/SmartLife-Desktop/issues"));
+    }
+    private async void Smart(object sender, RoutedEventArgs e)
+    {
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://smart-life-app.com"));
+    }
+    private async void GooglePlay (object sender, RoutedEventArgs e)
+    {
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://play.google.com/store/apps/details?id=com.tuya.smartlife"));
+    }
+    private async void AppStore(object sender, RoutedEventArgs e)
+    {
+        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://apps.apple.com/us/app/smart-life-smart-living/id1115101477"));
+    }
+    private void Close(object sender, RoutedEventArgs e) 
+    {
+        App.GetFrame().Navigate(typeof(Login));
     }
 }

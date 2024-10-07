@@ -10,6 +10,15 @@
 
   <StackPanel Padding="15,15" CornerRadius="{StaticResource OverlayCornerRadius}">
     
+    <Button Name="closeB" Visibility="Collapsed" Click="Close">
+      <StackPanel Orientation="Horizontal" Spacing="10">
+        <FontIcon Glyph="&#xE72B;" />
+        <TextBlock Text="Back"></TextBlock>
+      </StackPanel>
+    </Button>
+    
+    <Rectangle Fill="Transparent" Height="10"></Rectangle>
+    
     <StackPanel Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}">
       
       <StackPanel Orientation="Horizontal" Spacing="10">
@@ -108,7 +117,62 @@
       </StackPanel>
       
   </StackPanel>
+    
+    <Rectangle Fill="Transparent" Height="10"></Rectangle>
 
-  
+    <Grid ColumnSpacing="10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="5*"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="2*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <StackPanel Grid.Column="0" Background="{StaticResource LayerFillColorDefaultBrush}" Padding="10" CornerRadius="{StaticResource OverlayCornerRadius}" >
+        <TextBlock Text="Download the offical mobile apps!" Style="{StaticResource SubtitleTextBlockStyle}" HorizontalAlignment="Center"></TextBlock>
+
+
+        <StackPanel  Spacing="5">
+          <Rectangle Fill="Transparent" Height="10"></Rectangle>
+
+          <Button Click="GooglePlay" Background="Transparent" BorderThickness="0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10">
+              <Image Source="/Assets/Icons/google.png" Width="25" Height="25"></Image>
+              <TextBlock Text="Google Play Store"></TextBlock>
+            </StackPanel>
+          </Button>
+
+          <Button Click="AppStore" Background="Transparent" BorderThickness="0">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Spacing="10" >
+              <Image Source="/Assets/Icons/apple.png" Width="25" Height="25"></Image>
+              <TextBlock Text="IOS App Store"></TextBlock>
+            </StackPanel>
+          </Button>
+
+        </StackPanel>
+               
+      </StackPanel>
+      
+      <StackPanel Grid.Column="1" Background="{StaticResource LayerFillColorDefaultBrush}"  CornerRadius="{StaticResource OverlayCornerRadius}"  >
+        <Button Background="Transparent" BorderThickness="0" Click="Smart">
+          <Button.Resources>
+            <ResourceDictionary>
+              <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                  <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                </ResourceDictionary>
+              </ResourceDictionary.ThemeDictionaries>
+            </ResourceDictionary>
+          </Button.Resources>
+
+          <Image Source="/Assets/Icons/smartlife.png" Width="120" Height="120" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,20,20,20" ></Image>
+        </Button>
+        </StackPanel>
+    </Grid>
+
+    
+    
   </StackPanel>
 </Page>

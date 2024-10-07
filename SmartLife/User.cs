@@ -22,6 +22,7 @@ public partial class User
     {
         try
         {
+            System.Diagnostics.Debug.WriteLine(Save);
             if (Save)
             {
                 StreamReader sr = new StreamReader(path);
@@ -54,7 +55,7 @@ public partial class User
             }
             else { App.setLogin(false); }
         }
-        catch (FileNotFoundException)
+        catch (Exception)
         {
             App.setLogin(false);
         }
@@ -140,11 +141,25 @@ public partial class User
     }
     public bool GetSaveState()
     {
+        System.Diagnostics.Debug.WriteLine("returning:" + Save);
         return Save;
     }
     public void SetSaveState(bool s)
     {
         Save = s;
         App.UpdateSettings(new Windows.Graphics.SizeInt32(-1, -1));
+        System.Diagnostics.Debug.WriteLine("new state:" + Save);
+    }
+    public void DelSave()
+    {
+        try
+        {
+            System.Diagnostics.Debug.WriteLine("Deleteing:" + path) ;
+            File.Delete(path);
+        }
+        catch (Exception e )
+        {
+            System.Diagnostics.Debug.WriteLine(e);
+        }
     }
 }

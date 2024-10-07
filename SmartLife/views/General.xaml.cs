@@ -7,11 +7,17 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -197,6 +203,19 @@ public sealed partial class General : Page
         App.ToggleStart(true);
         bckgrd.Opacity = 1;
         bckgrd.IsEnabled = true;
+
+    
+        RegistryKey key = RegistryKey.OpenBaseKey(RegistryHive.CurrentUser, RegistryView.Registry64);
+        RegistryKey reg = key.OpenSubKey(@"Software\\Microsoft\\Windows\\CurrentVersion\\Run", RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.FullControl)!;
+        reg.SetValue("SmartLife", AppDomain.CurrentDomain.BaseDirectory + "SmartLife.exe", RegistryValueKind.String);
+
+        for (int i = 0; i < reg.GetValueNames().Length; i++)
+        {
+            System.Diagnostics.Debug.WriteLine(reg.GetValueNames()[i]);
+            System.Diagnostics.Debug.WriteLine(reg.GetValue(reg.GetValueNames()[i]));
+        }
+        key.Close();
+        reg.Close();
     }
     public void StartUpOff(object sender, RoutedEventArgs e) 
     {

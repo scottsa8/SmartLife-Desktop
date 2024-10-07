@@ -9,6 +9,7 @@
     mc:Ignorable="d"
   >
 
+  <Grid>
   <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Spacing="4">
     
     <StackPanel CornerRadius="3" Orientation="Horizontal" Padding="10,0,0,0"  x:Name="infobar" Visibility="Collapsed" HorizontalAlignment="Center" Background="DarkRed" Width="650" Height="35">
@@ -19,25 +20,34 @@
     <TextBlock  Style="{StaticResource DisplayTextBlockStyle}" Text="Please Login to your smart life account"> </TextBlock>
     <Image Source="/Assets/Icons/smartlife.png" Width="350" Height="350"></Image>
 
-      <StackPanel Orientation="Horizontal" Padding="4"  x:Name="credsbck" Visibility="Collapsed" HorizontalAlignment="Center" Background="PaleVioletRed" Width="350">
-      <FontIcon Glyph="&#xEB90;"></FontIcon>
-      <TextBlock Text="Invalid username or password!" HorizontalAlignment="Center"></TextBlock>
-    </StackPanel>
-      
-    <TextBox Header="Enter your SmartLife/Tuya username:" PlaceholderText="Username" x:Name="user" Width="350" />
+      <StackPanel>
+        <StackPanel Orientation="Horizontal" Padding="4"  x:Name="credsbck" Visibility="Collapsed"
+                  HorizontalAlignment="Center" Background="PaleVioletRed" Width="350"
+                  >
+          <FontIcon Glyph="&#xEB90;"></FontIcon>
+          <TextBlock Text="Invalid username or password!" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
 
-    <StackPanel Orientation="Horizontal" Padding="50,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-    <PasswordBox x:Name="pass" Width="275" Margin="0,0,8,20"
+        <TextBox Header="Enter your SmartLife/Tuya username:" PlaceholderText="Username" x:Name="user" Width="350" />
+
+        <StackPanel Orientation="Horizontal" Padding="50,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <PasswordBox x:Name="pass" Width="275" Margin="0,0,8,20"
                  Header="Enter your SmartLife/Tuya password:" PasswordRevealMode="Hidden" PlaceholderText="Password"/>
-      
-    <CheckBox Name="revealModeCheckBox" Content="Show" IsChecked="False" Checked="RevealModeCheckbox_Changed" Unchecked="RevealModeCheckbox_Changed"/>
+
+          <CheckBox Name="revealModeCheckBox" Content="Show" IsChecked="False" Checked="RevealModeCheckbox_Changed" Unchecked="RevealModeCheckbox_Changed"/>
+        </StackPanel>
+
+
+        <Button x:Name="login" Click="log" Width="350" HorizontalAlignment="Center">login</Button>
+
+
+      </StackPanel>
     </StackPanel>
     
-   
-    <Button x:Name="login" Click="log" Width="350" HorizontalAlignment="Center">login</Button>
-
-    <Button HorizontalAlignment="Right" CornerRadius="4" Click="help">
-      <FontIcon Glyph="&#xE897;"></FontIcon>
-    </Button>
-  </StackPanel>
+    <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0,0,5,5">
+      <Button HorizontalAlignment="Right" CornerRadius="4" Click="help" >
+        <FontIcon Glyph="&#xE897;"></FontIcon>
+      </Button>
+    </StackPanel>
+  </Grid>
 </Page>

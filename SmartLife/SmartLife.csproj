@@ -3,8 +3,7 @@
     <TargetFrameworks>
       net8.0-windows10.0.19041;
     </TargetFrameworks>
-
-    <OutputType>Exe</OutputType>
+    <OutputType>exe</OutputType>
     <UnoSingleProject>true</UnoSingleProject>
 
     <!-- Display name -->
@@ -43,6 +42,12 @@
       Localization;
       ThemeService;
     </UnoFeatures>
+    
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <AppxBundle>Never</AppxBundle>
+    <UapAppxPackageBuildMode>Sideloading</UapAppxPackageBuildMode>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+
   </PropertyGroup>
 
   <ItemGroup>

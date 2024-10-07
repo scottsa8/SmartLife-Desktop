@@ -4,7 +4,6 @@ using Microsoft.UI.Windowing;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Timers;
-using Uno.Resizetizer;
 using Windows.Graphics;
 using System.Runtime.Versioning;
 using H.NotifyIcon;
@@ -14,6 +13,9 @@ using Windows.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.Win32.TaskScheduler;
 using Microsoft.UI;
+using Microsoft.Win32;
+using System.Diagnostics;
+using System.Security.AccessControl;
 
 
 
@@ -78,8 +80,7 @@ public partial class App : Application
         Host = builder.Build();
 
         MainWindow = new Window();
-      
-
+        
         MainWindow.Content = rootFrame;
         user = new User();
         ReadSettings();
@@ -103,6 +104,7 @@ public partial class App : Application
         if (appWindow.Presenter is OverlappedPresenter p)
         {
             p.IsResizable = false;
+            p.IsMaximizable = false;
         }
         //move to center
         Microsoft.UI.Windowing.DisplayArea displayArea = Microsoft.UI.Windowing.DisplayArea.GetFromWindowId(windowId, Microsoft.UI.Windowing.DisplayAreaFallback.Nearest);
@@ -185,6 +187,7 @@ public partial class App : Application
     public static void ToggleStart(bool start)
     {
         Startup = start;
+        //task scheduler
         UpdateSettings(new SizeInt32(-1, -1));
     }
     public static void ToggleStartbck(bool state)
@@ -227,12 +230,18 @@ public partial class App : Application
         }
         else
         {
+            for (int x = 0; x < noti.Count; x++)
+            {
+                if (noti[x].Time.Equals(DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")) && noti[x].Name.Equals(n))
+                {
+                    return;
+                }
+            }
             Random rnd = new Random();
             int temp = rnd.Next(100);
             TotalNotifications.Add(temp);
-            noti.Add(new Notification(n, i, s, ic));
+            noti.Add(new Notification(n, i, s, ic,DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")));
         }
-        System.Diagnostics.Debug.WriteLine(TotalNotifications);
     }
     public static void setLogin(bool b)
     {
@@ -401,6 +410,7 @@ public partial class App : Application
  * THEMEING - PICK A THEME
  * OVERALL UI AND ANIMATIONS
  * format popup tray to look abit nicer
+ * notifications -> flash when same noti?
  * 
  * FUNCTIONAL
  * ------------
@@ -412,4 +422,5 @@ public partial class App : Application
  *-------------
  * tray icon action is turbo fucked -> works if you spam it?  -> literally no clue?
  * 
+ *
  * **/
