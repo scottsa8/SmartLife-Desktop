@@ -419,6 +419,5 @@ public partial class App : Application
  * FUNCTIONAL
  * ------------
  * MAYBE ADD NEW TASK BAR ICON -> OPTIONAL?
- * CLEAN THIS SHIT UP 
  * Start app on boot - auto start in background? - half done ?
  * **/
